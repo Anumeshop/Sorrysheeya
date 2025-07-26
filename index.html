@@ -1,0 +1,128 @@
+ <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Sorry Shreya</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      height: 100vh;
+      background: radial-gradient(circle at center, #fce4ec, #f8bbd0);
+      font-family: 'Segoe UI', sans-serif;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      color: #6a1b9a;
+      overflow: hidden;
+    }
+
+    .container {
+      text-align: center;
+      animation: float 3s ease-in-out infinite;
+    }
+
+    h1 {
+      font-size: 3.5rem;
+      margin-bottom: 0.5rem;
+    }
+
+    p {
+      font-size: 1.5rem;
+      margin-top: 0;
+    }
+
+    .cry-emoji {
+      font-size: 5rem;
+      cursor: pointer;
+      transition: transform 0.3s ease;
+      user-select: none;
+    }
+
+    .cry-emoji:hover {
+      transform: scale(1.2);
+    }
+
+    .hearts {
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      background: red;
+      transform: rotate(45deg);
+      animation: pop 1s ease-out forwards;
+    }
+
+    .hearts::before,
+    .hearts::after {
+      content: '';
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      background: red;
+      border-radius: 50%;
+    }
+
+    .hearts::before {
+      top: -10px;
+      left: 0;
+    }
+
+    .hearts::after {
+      top: 0;
+      left: -10px;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-20px); }
+    }
+
+    @keyframes pop {
+      0% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+      100% {
+        opacity: 0;
+        transform: translateY(-150px) scale(1.8);
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container" id="msgBox">
+    <h1 id="mainText">Sorry Shreya 😭</h1>
+    <p id="subText">Please forgive us... last super duper final ultra😭</p>
+    <div class="cry-emoji" id="cryEmoji"></div>
+  </div>
+
+  <script>
+    const emoji = document.getElementById("cryEmoji");
+    const mainText = document.getElementById("mainText");
+    const subText = document.getElementById("subText");
+
+    emoji.addEventListener("click", (e) => {
+      mainText.textContent = "You forgave us! rightt??pleasee😭❤️";
+      subText.textContent = "We'll never let you down again.";
+
+      for (let i = 0; i < 10; i++) {
+        const heart = document.createElement("div");
+        heart.classList.add("hearts");
+        heart.style.left = `${Math.random() * window.innerWidth}px`;
+        heart.style.top = `${Math.random() * window.innerHeight}px`;
+        document.body.appendChild(heart);
+        setTimeout(() => heart.remove(), 1000);
+      }
+    });
+
+    emoji.addEventListener("mouseover", () => {
+      emoji.textContent = "😭";
+    });
+
+    emoji.addEventListener("mouseout", () => {
+      emoji.textContent = "🥺";
+    });
+  </script>
+</body>
+</html>
